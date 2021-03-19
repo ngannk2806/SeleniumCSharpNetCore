@@ -28,7 +28,6 @@ namespace SeleniumCSharpNetCore
             {
                 Driver.FindElement(By.Id("normal-slidedown"));
                 Present = true;
-                Console.WriteLine("Existed 'asking about recieved notification popup'");
             } catch (NoSuchElementException)
             {
                 Present = false;
