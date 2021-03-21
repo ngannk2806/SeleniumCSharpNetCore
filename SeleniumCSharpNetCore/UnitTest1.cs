@@ -6,9 +6,8 @@ using System.Configuration;
 
 namespace SeleniumCSharpNetCore
 {
-    public class Tests
+    public class Tests : DriverHelper
     {
-        public IWebDriver Driver;
         [SetUp]
         public void Setup()
         {
@@ -18,17 +17,16 @@ namespace SeleniumCSharpNetCore
         [Test]
         public void Test1()
         {
-            Driver.Navigate().GoToUrl("https://tiki.vn");
-            IWebElement SearchTextBox = Driver.FindElement(By.XPath("//input[@data-view-id='main_search_form_input']"));
-            SearchTextBox.SendKeys("Cometics");
-            SearchTextBox.SendKeys(Keys.Enter);
+            Driver.Navigate().GoToUrl("https://www.lazada.vn/");
+            CustomControl.CustomComboBox("search-box__input", "Comestic");
 
-            Boolean Present;
+              Boolean Present;
             try
             {
                 Driver.FindElement(By.Id("normal-slidedown"));
                 Present = true;
-            } catch (NoSuchElementException)
+            }
+            catch (NoSuchElementException)
             {
                 Present = false;
                 Console.WriteLine("Not existed 'asking about recieved notification popup'");
