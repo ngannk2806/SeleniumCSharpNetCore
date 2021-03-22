@@ -9,9 +9,8 @@ namespace SeleniumCSharpNetCore
     {
         public static void CustomComboBox(String controlName, String value)
         {
-            IWebElement ComboBox = Driver.FindElement(By.XPath($"//input[@class='{controlName}--O34g']"));
+            IWebElement ComboBox = Driver.FindElement(By.XPath($"//input[@class='{controlName}']"));
             ComboBox.SendKeys($"{value}");
-            ComboBox.SendKeys(Keys.Enter);
         }
     }
 }
