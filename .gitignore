@@ -1,3 +1,4 @@
 *.vs
 */obj
 SeleniumCSharpNetCore/.editorconfig
+/SeleniumCSharpNetCore/bin/Debug/netcoreapp3.1

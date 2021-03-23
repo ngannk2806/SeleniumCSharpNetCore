@@ -7,8 +7,11 @@ using System.Configuration;
 
 namespace SeleniumCSharpNetCore
 {
-    public class Tests : DriverHelper
+    public class Tests
     {
+        private IWebDriver Driver;
+        private CustomControl customControl;
+
         [SetUp]
         public void Setup()
         {
@@ -20,36 +23,28 @@ namespace SeleniumCSharpNetCore
         public void AccessToWebAppTest()
         {
             Driver.Navigate().GoToUrl("https://www.lazada.vn/");
-            CustomControl.CustomComboBox("search-box__input--O34g", "Comestic" + Keys.Enter);
+            customControl.CustomCombobox("search-box__input--O34g", "Comestic" + Keys.Enter);
 
-              Boolean Present;
-            try
-            {
-                Driver.FindElement(By.Id("normal-slidedown"));
-                Present = true;
-            }
-            catch (NoSuchElementException)
-            {
-                Present = false;
-                Console.WriteLine("Not existed 'asking about recieved notification popup'");
-            }
             Assert.Pass();
         }
 
         [Test]
         public void LoginTest()
         {
+            Console.WriteLine("Start Test Login");
             Driver.Manage().Window.Maximize();
             Driver.Navigate().GoToUrl("http://eaapp.somee.com/");
 
-            HomePage homePage = new HomePage();
-            LoginPage loginPage = new LoginPage();
+            HomePage homePage = new HomePage(Driver);
+            LoginPage loginPage = new LoginPage(Driver);
 
             homePage.clickLogin();
             loginPage.EnterUserNameAndPassword("admin", "password");
             loginPage.ClickLogin();
 
             Assert.That(homePage.lnkLogOffExisted, Is.True, "Log out button did not displayed");
+
+            Console.WriteLine("Finish Test Login");
         }
     }
 }

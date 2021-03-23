@@ -5,12 +5,18 @@ using System.Text;
 
 namespace SeleniumCSharpNetCore
 {
-    public class CustomControl: DriverHelper
+    public class CustomControl
     {
-        public static void CustomComboBox(String controlName, String value)
+        private IWebElement Driver;
+
+        public CustomControl(IWebElement Driver)
         {
-            IWebElement ComboBox = Driver.FindElement(By.XPath($"//input[@class='{controlName}']"));
-            ComboBox.SendKeys($"{value}");
+            this.Driver = Driver;
+        }
+        public void CustomCombobox(string controlname, string value)
+        {
+            IWebElement combobox = Driver.FindElement(By.XPath($"//input[@class='{controlname}']"));
+            combobox.SendKeys($"{value}");
         }
     }
 }

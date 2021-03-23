@@ -5,8 +5,15 @@ using System.Text;
 
 namespace SeleniumCSharpNetCore.Pages
 {
-    class HomePage: DriverHelper
+    class HomePage
     {
+        private IWebDriver Driver;
+
+        public HomePage(IWebDriver Driver)
+        {
+            this.Driver = Driver;
+        }
+
         IWebElement btnLogin => Driver.FindElement(By.Id("loginLink"));
         IWebElement lnkLogOff => Driver.FindElement(By.LinkText("Log off"));
 

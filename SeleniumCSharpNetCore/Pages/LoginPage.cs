@@ -5,8 +5,15 @@ using System.Text;
 
 namespace SeleniumCSharpNetCore.Pages
 {
-    class LoginPage: DriverHelper
+    class LoginPage
     {
+        private IWebDriver Driver;
+
+        public LoginPage(IWebDriver Driver)
+        {
+            this.Driver = Driver;
+        }
+
         //// lazada
         //IWebElement txtUserName => Driver.FindElement(By.XPath("//div[@class='mod-login']//input[@type='text']"));
         //IWebElement txtPassword => Driver.FindElement(By.XPath("//div[@class='mod-login']//input[@type='password']"));
